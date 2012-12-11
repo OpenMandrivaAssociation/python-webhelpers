@@ -1,18 +1,16 @@
 %define tarname WebHelpers
-%define name	python-webhelpers
 %define version	1.3
 %define rel	b1
-%define release %mkrel 0.%rel
+%define release 0.%rel
 
 Summary:	Helper functions for writing web applications
-Name:		%{name}
-Version:	%{version}
+Name:		python-webhelpers
+Version:	1.3
 Release:	%{release}
 Source0:        http://pypi.python.org/packages/source/W/%{tarname}/%{tarname}-%{version}%{rel}.tar.gz
 License:	BSD
 Group:		Development/Python
 Url:		http://sluggo.scrapping.cc/python/WebHelpers/
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch:	noarch
 Requires:	python-markupsafe >= 0.9.2
 BuildRequires:	python-setuptools
@@ -33,18 +31,22 @@ depend on third-party packages as described in the docs.
 %setup -q -n %{tarname}-%{version}%{rel}
 
 %install
-%__rm -rf %{buildroot}
 PYTHONDONTWRITEBYTECODE= %__python setup.py install --root=%{buildroot} --record=FILE_LIST
+sed -i 's/.*egg-info$//' FILE_LIST
 pushd docs
 export PYTHONPATH=`dir -d ../build/lib*`
 make html
 rm -f _build/html/.buildinfo
 popd docs
 
-%clean
-%__rm -rf %{buildroot}
-
 %files -f FILE_LIST
-%defattr(-,root,root)
 %doc CHANGELOG LICENSE README.txt TODO docs/_build/html
+
+
+
+%changelog
+* Thu Mar 31 2011 Lev Givon <lev@mandriva.org> 1.3-0.b1mdv2011.0
++ Revision: 649455
+- import python-webhelpers
+
 
