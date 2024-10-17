@@ -10,7 +10,7 @@ Release:	%{release}
 Source0:        http://pypi.python.org/packages/source/W/%{tarname}/%{tarname}-%{version}%{rel}.tar.gz
 License:	BSD
 Group:		Development/Python
-Url:		http://sluggo.scrapping.cc/python/WebHelpers/
+Url:		https://sluggo.scrapping.cc/python/WebHelpers/
 BuildArch:	noarch
 Requires:	python-markupsafe >= 0.9.2
 BuildRequires:	python-setuptools
